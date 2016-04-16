@@ -40,3 +40,7 @@ func (h *HbObj) Connect() error {
 func (h *HbObj) GetRow(table string, tget *TGet) (*TResult_, error) {
 	return h.Client.Get([]byte(table), tget)
 }
+
+func (h *HbObj) Put(table string, tput *TPut) (err error) {
+	return h.Client.Put([]byte(table), tput)
+}

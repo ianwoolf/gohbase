@@ -16,3 +16,17 @@ func GenTGet(rowKey, TableCF, Qual string) (tget *TGet) {
 	}
 	return
 }
+
+func GenTPut(rowKey, tableCF, qualifier string, rowValue []byte) (tput *TPut) {
+	tput = &TPut{
+		Row: []byte(rowKey),
+		ColumnValues: []*TColumnValue{
+			&TColumnValue{
+				Family:    []byte(tableCF),
+				Qualifier: []byte(qualifier),
+				Value:     rowValue,
+			},
+		},
+	}
+	return
+}

@@ -1,11 +1,13 @@
 # gohbase
 connect and send conmand to hbase by thrift2
 
-Looking forward your pr or issue
-
 thrift file is build at hbase v1.2.0
 
-get value example:
+Looking forward your pr or issue
+
+
+## demo
+#### get
 
     package main
 
@@ -27,3 +29,9 @@ get value example:
     		fmt.Println(string(col.GetFamily()), string(col.GetQualifier()), string(col.GetValue()), col.GetTags(), col.GetTimestamp())
 	    }
     }
+
+#### put
+
+	if err := hbObj.Put("test", h.GenTPut("row1", "c2", "a", []byte("2-test"))); err != nil {
+		fmt.Println(err.Error())
+	}
