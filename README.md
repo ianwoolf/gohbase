@@ -6,7 +6,7 @@ Looking forward your pr or issue
 ## hbase
 thrift file gen by hbase v1.2.0 thrift2 file
 
-hbase thrift2 need be started by cmd `hbase-daemon.sh start thrift2`
+hbase thrift2 need to be started by cmd `hbase-daemon.sh start thrift2`
 
 ## demo
 #### get
