@@ -1,10 +1,12 @@
 # gohbase
-connect and send conmand to hbase by thrift2
 
-thrift file is build at hbase v1.2.0
 
 Looking forward your pr or issue
 
+## hbase
+thrift file gen by hbase v1.2.0 thrift2 file
+
+hbase thrift2 need be started by cmd `hbase-daemon.sh start thrift2`
 
 ## demo
 #### get
