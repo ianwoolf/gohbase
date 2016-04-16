@@ -8,24 +8,24 @@ import (
 	"git.apache.org/thrift.git/lib/go/thrift"
 )
 
-type HBConnect struct {
+type HbObj struct {
 	Host   string
 	Port   int
 	Trans  *thrift.TSocket
 	Client *THBaseServiceClient
 }
 
-func NewHbObj(host string, port int) HBConnect {
-	return HBConnect{
+func NewHbObj(host string, port int) HbObj {
+	return HbObj{
 		Host: host,
 		Port: port,
 	}
 }
 
-func (h *HBConnect) Close() {
+func (h *HbObj) Close() {
 	h.Trans.Close()
 }
-func (h *HBConnect) Connect() error {
+func (h *HbObj) Connect() error {
 	var err error
 	h.Trans, err = thrift.NewTSocket(net.JoinHostPort(h.Host, strconv.Itoa(h.Port)))
 	if err != nil {
@@ -37,23 +37,6 @@ func (h *HBConnect) Connect() error {
 	return h.Trans.Open()
 }
 
-func (h *HBConnect) GetRow(table string, tget *TGet) (*TResult_, error) {
+func (h *HbObj) GetRow(table string, tget *TGet) (*TResult_, error) {
 	return h.Client.Get([]byte(table), tget)
-}
-
-func GenTGet(rowKey, TableCF, Qual string) (tget *TGet) {
-	tget = &TGet{
-		Row:     []byte(rowKey),
-		Columns: []*TColumn{},
-	}
-	if TableCF != "" {
-		Tcol := &TColumn{
-			Family: []byte(TableCF),
-		}
-		if Qual != "" {
-			Tcol.Qualifier = []byte(Qual)
-		}
-		tget.Columns = append(tget.Columns, Tcol)
-	}
-	return
 }
